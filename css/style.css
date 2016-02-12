@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+}
+
+.game-info {
+    border: 1px solid darkred;
+}
+.game-info span {
+    display: inline-flex;
+}
+
+.game-over {
+    display: none;
+}

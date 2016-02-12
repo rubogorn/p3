@@ -10,28 +10,28 @@ es[6](); // Upcoming edition of ECMAScript is ES6
 
 // variables
 var allEnemies = [];
-var player     = '';
-var gem        = '';
-var GameOver   = false;
+var player = '';
+var gem = '';
+var GameOver = false;
 
 // constats
 const blockSizeHorizontal = 83;
-const blockSizeHVertical  = 101;
-const playerLifes         = 5;
+const blockSizeHVertical = 101;
+const playerLifes = 5;
 
 // Generate Random Y Axis
 function randomXPosition() {
-    return (Math.floor(Math.random()*4)*blockSizeHVertical + (blockSizeHVertical/2)) + 50.5;
+    return (Math.floor(Math.random() * 4) * blockSizeHVertical + (blockSizeHVertical / 2)) + 50.5;
 }
 
 // Generate Random Y Axis
 function randomYPosition() {
-    return (Math.floor(Math.random()*3)*blockSizeHorizontal + (blockSizeHorizontal/2)) + 20;
+    return (Math.floor(Math.random() * 3) * blockSizeHorizontal + (blockSizeHorizontal / 2)) + 20;
 }
 
 // move gem to new position
 function moveGem() {
-    gem.x = randomXPosition() ;
+    gem.x = randomXPosition();
     gem.y = randomYPosition();
 }
 
@@ -53,9 +53,9 @@ class Gem extends Figure {
 
     update() {
         if ((player.x - this.x < 70) && (this.x - player.x < 70) && (this.y - player.y < 30) && (player.y - this.y < 30)) {
-            player.points = player.points +500;
+            player.points = player.points + 500;
             moveGem();
-        };
+        }
     }
 }
 
@@ -64,7 +64,7 @@ class Gem extends Figure {
 class Enemy extends Figure {
 
     update(dt) {
-        if(!GameOver) {
+        if (!GameOver) {
             // move enemy from left to right
             if (this.x < 508) {
                 this.x = this.x + this.speed * dt;
@@ -78,12 +78,12 @@ class Enemy extends Figure {
             // enemy gets player
             if ((player.x - this.x < 70) && (this.x - player.x < 70) && (this.y - player.y < 30) && (player.y - this.y < 30)) {
                 player.reset('A Bug ate you');
-                player.points = player.points -200;
+                player.points = player.points - 200;
             }
 
             // enemy gets gem
-            if  ((gem.x - this.x < 70) && (this.x - gem.x < 70) && (this.y - gem.y < 30) && (gem.y - this.y < 30)) {
-                player.points = player.points -100;
+            if ((gem.x - this.x < 70) && (this.x - gem.x < 70) && (this.y - gem.y < 30) && (gem.y - this.y < 30)) {
+                player.points = player.points - 100;
                 moveGem();
             }
         }
@@ -109,16 +109,16 @@ class Player extends Figure {
             GameOver = true;
             $('.game-over').show();
         }
-        if(this.y <52) {
-        player.points = player.points -200;
-        player.reset('You fell into the water. You can\'t swim, that\'s why you are dead');
+        if (this.y < 52) {
+            player.points = player.points - 200;
+            player.reset('You fell into the water. You can\'t swim, that\'s why you are dead');
         }
     }
 
     // move player with key commands
     handleInput(keyCommand) {
         if (!GameOver) {
-            switch(keyCommand) {
+            switch (keyCommand) {
                 case 'left':
                     if (this.x > 0) {
                         this.x = this.x - blockSizeHVertical;
@@ -156,9 +156,9 @@ class Player extends Figure {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-for (let i=0; i<3; i++) {
+for (let i = 0; i < 3; i++) {
     let y = randomYPosition();
-    let speed = Math.floor(Math.random()*2.9)*83 + 41.5;
+    let speed = Math.floor(Math.random() * 2.9) * 83 + 41.5;
     let enemy = new Enemy('images/enemy-bug.png', 0, y, speed);
     allEnemies.push(enemy);
 }
@@ -167,13 +167,12 @@ for (let i=0; i<3; i++) {
 player = new Player('images/char-boy.png', 200, 400, 5);
 
 
-
 gem = new Gem('images/Gem Blue.png', randomXPosition(), randomYPosition());
 
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function (e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',

@@ -149,6 +149,7 @@ class Player extends Figure {
         this.y = 400;
         this.lifes--;
 
+        // show game information
         $('.lifes').text(this.lifes);
         $('.my-death').text(deathInfo);
     }
@@ -166,7 +167,7 @@ for (let i = 0; i < 3; i++) {
 // Place the player object in a variable called player
 player = new Player('images/char-boy.png', 200, 400, 5);
 
-
+// genarate Gem
 gem = new Gem('images/Gem Blue.png', randomXPosition(), randomYPosition());
 
 

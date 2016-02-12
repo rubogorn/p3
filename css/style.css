@@ -6,7 +6,7 @@ body {
     border: 1px solid darkred;
 }
 .game-info span {
-    display: inline-flex;
+    display: inline;
 }
 
 .game-over {

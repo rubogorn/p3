@@ -44,12 +44,6 @@ function randomYPosition() {
     return Math.floor(Math.random() * 3) * blockSizeHorizontal + blockSizeHorizontal / 2 + 20;
 }
 
-// move gem to new position
-function moveGem() {
-    gem.x = randomXPosition();
-    gem.y = randomYPosition();
-}
-
 var Figure = function () {
     function Figure(sprite, x, y) {
         _classCallCheck(this, Figure);
@@ -86,8 +80,17 @@ var Gem = function (_Figure) {
         value: function update() {
             if (player.x - this.x < 70 && this.x - player.x < 70 && this.y - player.y < 30 && player.y - this.y < 30) {
                 player.points = player.points + 500;
-                moveGem();
+                this.moveGem();
             }
+        }
+
+        // move gem to new position
+
+    }, {
+        key: 'moveGem',
+        value: function moveGem() {
+            this.x = randomXPosition();
+            this.y = randomYPosition();
         }
     }]);
 
@@ -129,7 +132,7 @@ var Enemy = function (_Figure2) {
                 // enemy gets gem
                 if (gem.x - this.x < 70 && this.x - gem.x < 70 && this.y - gem.y < 30 && gem.y - this.y < 30) {
                     player.points = player.points - 100;
-                    moveGem();
+                    gem.moveGem();
                 }
             }
         }
